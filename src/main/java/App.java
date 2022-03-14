@@ -26,7 +26,7 @@ public class App {
             model.put("sightings", sightings);
             model.put("animals", animals);
 
-            return new ModelAndView(model, "animals.hbs");
+            return new ModelAndView(model, "animal.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post submission
@@ -37,11 +37,11 @@ public class App {
             String health = request.queryParams("health");
             String age = request.queryParams("age");
             String location = request.queryParams("location");
-            String ranger = request.queryParams("ranger");
+            String rangername = request.queryParams("rangername");
 
-            Endangered endangeredAnimal = new Endangered(animal, danger, health, age, location, ranger);
+            Endangered endangeredAnimal = new Endangered(animal, danger, health, age, location, rangername);
             endangeredAnimal.save();
-            Sighting sighting = new Sighting(endangeredAnimal.getId(), location, ranger);
+            Sighting sighting = new Sighting(endangeredAnimal.getId(), location, rangername);
             sighting.save();
 
             model.put("endangeredAnimal", endangeredAnimal);
